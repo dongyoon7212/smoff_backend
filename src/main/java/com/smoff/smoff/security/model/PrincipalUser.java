@@ -1,4 +1,4 @@
-package com.smoff.smoff.security;
+package com.smoff.smoff.security.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.smoff.smoff.entity.UserRole;

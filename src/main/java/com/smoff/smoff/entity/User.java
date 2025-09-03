@@ -22,6 +22,7 @@ public class User {
     private String profileImg;
     private LocalDateTime createDt;
     private LocalDateTime updateDt;
+    private LocalDateTime deleteDt;
 
     private List<UserRole> userRoles;
 }

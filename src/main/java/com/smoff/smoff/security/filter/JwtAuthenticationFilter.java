@@ -1,7 +1,8 @@
 package com.smoff.smoff.security.filter;
 
 import com.smoff.smoff.entity.User;
-import com.smoff.smoff.security.PrincipalUser;
+import com.smoff.smoff.repository.UserRepository;
+import com.smoff.smoff.security.model.PrincipalUser;
 import com.smoff.smoff.security.jwt.JwtUtils;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.*;
@@ -22,6 +23,9 @@ public class JwtAuthenticationFilter implements Filter {
 
     @Autowired
     private JwtUtils jwtUtils;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -50,7 +54,6 @@ public class JwtAuthenticationFilter implements Filter {
                             .build();
                     Authentication authentication = new UsernamePasswordAuthenticationToken(principalUser, "", principalUser.getAuthorities());
                     SecurityContextHolder.getContext().setAuthentication(authentication);
-                    System.out.println("인증 성공");
                     System.out.println(authentication.getName());
                 }, () -> {
                     throw new AuthenticationServiceException("인증 실패"); //DB에 사용자 없으면 인증 실패 예외 발생
