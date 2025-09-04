@@ -33,12 +33,12 @@ public class ConnectionController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<?> addConnection(@RequestBody UpdateConnectionReqDto updateConnectionReqDto, @AuthenticationPrincipal PrincipalUser principalUser) {
+    public ResponseEntity<?> updateConnection(@RequestBody UpdateConnectionReqDto updateConnectionReqDto, @AuthenticationPrincipal PrincipalUser principalUser) {
         return ResponseEntity.ok(connectionService.updateConnection(updateConnectionReqDto, principalUser));
     }
 
     @PostMapping("/remove")
-    public ResponseEntity<?> addConnection(@RequestBody RemoveConnectionReqDto removeConnectionReqDto, @AuthenticationPrincipal PrincipalUser principalUser) {
+    public ResponseEntity<?> removeConnection(@RequestBody RemoveConnectionReqDto removeConnectionReqDto, @AuthenticationPrincipal PrincipalUser principalUser) {
         return ResponseEntity.ok(connectionService.removeConnection(removeConnectionReqDto, principalUser));
     }
 }

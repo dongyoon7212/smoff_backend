@@ -2,27 +2,35 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.smoff.smoff.mapper.PledgeMapper">
+<mapper namespace="com.smoff.smoff.mapper.PatienceLogMapper">
 
-    <resultMap id="PledgeResultMap" type="com.smoff.smoff.entity.Pledge">
-        <id property="pledgeId" column="pledge_id" />
+    <resultMap id="PatienceLogResultMap" type="com.smoff.smoff.entity.PatienceLog">
+        <id property="PatienceLogId" column="patience_log_id" />
         <result property="challengerId" column="challenger_id" />
-        <result property="signatureImg" column="signature_img" />
+        <result property="amountSave" column="amount_save" />
         <result property="createDt" column="create_dt" />
     </resultMap>
 
-    <insert id="addPledge" >
+    <insert id="addPatienceLog" >
         insert into
-            pledge_tb
-        values
-            (0, #{challengerId}, #{signatureImg}, now())
+            patience_log_tb
+        values (0, #{challengerId}, 225, now())
     </insert>
 
-    <select id="getPledgeByChallengerId" resultMap="PledgeResultMap">
+    <select id="getPatienceLog" resultMap="PatienceLogResultMap">
         select
             *
         from
-            pledge_tb
+            patience_log_tb
+        where
+            patience_log_id = #{patienceLogId} AND challenger_id = #{challengerId}
+    </select>
+
+    <select id="getPatienceLogList" resultMap="PatienceLogResultMap">
+        select
+            *
+        from
+            patience_log_tb
         where
             challenger_id = #{challengerId}
     </select>
