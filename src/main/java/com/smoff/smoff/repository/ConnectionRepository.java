@@ -22,7 +22,7 @@ public class ConnectionRepository {
         return connectionMapper.getConnection(challengerId, supporterId);
     }
 
-    public List<Connection> getConnectionListByChallengerId (Integer challengerId) {
+    public List<Connection> getConnectionListByChallengerId(Integer challengerId) {
         return connectionMapper.getConnectionListByChallengerId(challengerId);
     }
 
