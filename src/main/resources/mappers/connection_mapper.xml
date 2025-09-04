@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smoff.smoff.mapper.ConnectionMapper">
+
+    <resultMap id="ConnectionResultMap" type="com.smoff.smoff.entity.Connection">
+        <id property="connectionId" column="connection_id" />
+        <result property="challengerId" column="challenger_id" />
+        <result property="supporterId" column="supporter_id" />
+        <result property="status" column="status" />
+        <result property="createDt" column="create_dt" />
+    </resultMap>
+
+    <insert id="addConnection" >
+        insert into
+            connection_tb
+        values
+            (0, #{challengerId}, #{supporterId}, #{status}, now())
+    </insert>
+
+    <select id="getConnection" resultMap="ConnectionResultMap">
+        select
+            *
+        from
+            connection_tb
+        where
+            challenger_id = #{challengerId} AND supporter_id = #{supporterId}
+    </select>
+
+    <select id="getConnectionListByChallengerId" resultMap="ConnectionResultMap" >
+        select
+            *
+        from
+            connection_tb
+        where
+            challenger_id = #{challengerId}
+    </select>
+
+    <select id="getConnectionListBySupporterId" resultMap="ConnectionResultMap">
+        select
+            *
+        from
+            connection_tb
+        where
+            supporter_id = #{supporterId}
+    </select>
+
+    <update id="updateConnection">
+        update from
+            connection_tb
+        set
+            status = #{status}
+        where
+            challenger_id = #{challengerId} AND supporter_id = #{supporterId}
+    </update>
+
+    <delete id="removeConnection">
+        delete from
+            connection_tb
+        where
+            challenger_id = #{challengerId} AND supporter_id = #{supporterId}
+    </delete>
+</mapper>
