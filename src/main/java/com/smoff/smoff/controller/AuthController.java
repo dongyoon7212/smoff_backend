@@ -40,4 +40,14 @@ public class AuthController {
     public ResponseEntity<?> softDeleteUser(@RequestBody SoftDeleteUserReqDto softDeleteUserReqDto, @AuthenticationPrincipal PrincipalUser principalUser) {
         return ResponseEntity.ok(authService.softDeleteUser(softDeleteUserReqDto, principalUser));
     }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<?> getUserByEmail(@PathVariable String email) {
+        return ResponseEntity.ok(authService.getUserByEmail(email));
+    }
+
+    @GetMapping("/username/{username}")
+    public ResponseEntity<?> getUserByUsername(@PathVariable String username) {
+        return ResponseEntity.ok(authService.getUserByUsername(username));
+    }
 }

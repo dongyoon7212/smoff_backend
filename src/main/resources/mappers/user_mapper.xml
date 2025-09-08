@@ -42,8 +42,9 @@
             #{email},
             #{password},
             #{username},
-            ${age}, ${roleType},
-            "https://firebasestorage.googleapis.com/v0/b/smoff-26895.firebasestorage.app/o/profile-img%2Fprofile.png?alt=media&amp;token=a408d456-55c8-4031-aaa0-16a14b92a3cb",
+            #{age}, #{roleType},
+            #{profileImg},
+<!--            "https://firebasestorage.googleapis.com/v0/b/smoff-26895.firebasestorage.app/o/profile-img%2Fprofile.png?alt=media&amp;token=a408d456-55c8-4031-aaa0-16a14b92a3cb",-->
             now(),
             null,
             null
