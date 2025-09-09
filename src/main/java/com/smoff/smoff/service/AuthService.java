@@ -17,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -96,7 +98,11 @@ public class AuthService {
         }
 
         String accessToken = jwtUtils.generateAccessToken(user.getUserId().toString());
-        return new ApiRespDto<>("success", "로그인이 성공적으로 완료되었습니다.", accessToken);
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("accessToken", accessToken);
+        data.put("user", user);
+        return new ApiRespDto<>("success", "로그인이 성공적으로 완료되었습니다.", data);
     }
 
     public ApiRespDto<?> softDeleteUser(SoftDeleteUserReqDto softDeleteUserReqDto, PrincipalUser principalUser) {

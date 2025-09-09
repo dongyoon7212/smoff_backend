@@ -54,7 +54,6 @@ public class JwtAuthenticationFilter implements Filter {
                             .build();
                     Authentication authentication = new UsernamePasswordAuthenticationToken(principalUser, "", principalUser.getAuthorities());
                     SecurityContextHolder.getContext().setAuthentication(authentication);
-                    System.out.println(authentication.getName());
                 }, () -> {
                     throw new AuthenticationServiceException("인증 실패"); //DB에 사용자 없으면 인증 실패 예외 발생
                 });
