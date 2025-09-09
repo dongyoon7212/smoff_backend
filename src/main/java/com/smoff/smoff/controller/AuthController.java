@@ -50,4 +50,9 @@ public class AuthController {
     public ResponseEntity<?> getUserByUsername(@PathVariable String username) {
         return ResponseEntity.ok(authService.getUserByUsername(username));
     }
+
+    @GetMapping("/role/{email}")
+    public ResponseEntity<?> getCheckRoleByEmail(@PathVariable String email) {
+        return ResponseEntity.ok(authService.getCheckRoleByEmail(email));
+    }
 }

@@ -149,6 +149,22 @@ public class AuthService {
 
         return new ApiRespDto<>("success", "사용 가능한 사용자 이름 입니다.", null);
     }
+
+    public ApiRespDto<?> getCheckRoleByEmail(String email) {
+        Optional<User> optionalUser = userRepository.getUserByEmail(email);
+
+        if (optionalUser.isEmpty()) {
+            return new ApiRespDto<>("failed", "회원 정보가 존재하지 않습니다.", null);
+        }
+
+        User user = optionalUser.get();
+
+        if (user.getUserRoles().stream().anyMatch(userRole -> userRole.getRoleId() == 2)) {
+            return new ApiRespDto<>("success", "인증이 완료되었습니다.", null);
+        }
+
+        return new ApiRespDto<>("failed", "아직 인증되지 않았습니다.", null);
+    }
 }
 
 
