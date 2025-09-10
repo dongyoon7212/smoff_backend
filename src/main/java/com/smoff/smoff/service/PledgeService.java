@@ -65,6 +65,6 @@ public class PledgeService {
             return new ApiRespDto<>("failed", "서약서가 존재하지 않습니다.", null);
         }
 
-        return new ApiRespDto<>("success", "서약서를 조회하였습니다.", null);
+        return new ApiRespDto<>("success", "서약서를 조회하였습니다.", optionalPledge.get());
     }
 }

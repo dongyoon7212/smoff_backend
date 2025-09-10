@@ -20,7 +20,7 @@ public class PledgeController {
         return ResponseEntity.ok(pledgeService.addPledge(addPledgeReqDto, principalUser));
     }
 
-    @GetMapping("/{challengeId}")
+    @GetMapping("/{challengerId}")
     public ResponseEntity<?> getPledgeByChallengerId(@PathVariable Integer challengerId, @AuthenticationPrincipal PrincipalUser principalUser) {
         return ResponseEntity.ok(pledgeService.getPledgeByChallengerId(challengerId, principalUser));
     }
