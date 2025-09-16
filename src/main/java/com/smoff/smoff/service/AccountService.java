@@ -59,6 +59,12 @@ public class AccountService {
             return new ApiRespDto<>("failed", "회원 정보가 존재하지 않습니다.", null);
         }
 
+        Optional<User> usernameOptionalUser = userRepository.getUserByUsername(changeUsernameReqDto.getUsername());
+
+        if (usernameOptionalUser.isPresent()) {
+            return new ApiRespDto<>("failed", "이미 존재하는 사용자 이름입니다.", null);
+        }
+
         int result = userRepository.changeUsername(changeUsernameReqDto.toEntity());
 
         if (result != 1) {

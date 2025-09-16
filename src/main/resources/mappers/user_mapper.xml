@@ -143,7 +143,6 @@
     
     <update id="softDeleteUser">
         update
-        from
             user_tb
         set
             delete_dt = date_add(now(), INTERVAL 30 DAY)
@@ -155,7 +154,6 @@
 
     <update id="changePassword" >
         update
-        from
             user_tb
         set
             password = #{password},
@@ -166,7 +164,6 @@
 
     <update id="changeUsername" >
         update
-        from
             user_tb
         set
             username = #{username},
