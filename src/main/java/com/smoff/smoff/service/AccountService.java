@@ -35,7 +35,7 @@ public class AccountService {
 
         User user = userIdOptionalUser.get();
 
-        if (!bCryptPasswordEncoder.matches(changePasswordReqDto.getPassword(), user.getPassword())) {
+        if (!bCryptPasswordEncoder.matches(changePasswordReqDto.getOldPassword(), user.getPassword())) {
             return new ApiRespDto<>("failed", "아이디 또는 비밀번호가 일치하지 않습니다.", null);
         }
 

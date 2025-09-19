@@ -8,12 +8,13 @@ import lombok.Data;
 @AllArgsConstructor
 public class ChangePasswordReqDto {
     private Integer userId;
-    private String password;
+    private String oldPassword;
+    private String newPassword;
 
     public User toEntity() {
         return User.builder()
                 .userId(userId)
-                .password(password)
+                .password(newPassword)
                 .build();
     }
 }
