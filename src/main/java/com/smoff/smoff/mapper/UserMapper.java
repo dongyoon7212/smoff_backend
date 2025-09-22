@@ -17,4 +17,5 @@ public interface UserMapper {
     //====================== Account =======================
     int changePassword(User user);
     int changeUsername(User user);
+    int changeProfileImg(User user);
 }

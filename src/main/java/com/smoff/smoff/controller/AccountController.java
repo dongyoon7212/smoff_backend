@@ -1,6 +1,7 @@
 package com.smoff.smoff.controller;
 
 import com.smoff.smoff.dto.account.ChangePasswordReqDto;
+import com.smoff.smoff.dto.account.ChangeProfileImgReqDto;
 import com.smoff.smoff.dto.account.ChangeUsernameReqDto;
 import com.smoff.smoff.security.model.PrincipalUser;
 import com.smoff.smoff.service.AccountService;
@@ -27,6 +28,11 @@ public class AccountController {
     @PostMapping("/change/username")
     public ResponseEntity<?> changeUsername(@RequestBody ChangeUsernameReqDto changeUsernameReqDto, @AuthenticationPrincipal PrincipalUser principalUser) {
         return ResponseEntity.ok(accountService.changeUsername(changeUsernameReqDto, principalUser));
+    }
+
+    @PostMapping("/change/profileimg")
+    public ResponseEntity<?> changeProfileImg(@RequestBody ChangeProfileImgReqDto changeProfileImgReqDto, @AuthenticationPrincipal PrincipalUser principalUser) {
+        return ResponseEntity.ok(accountService.changeProfileImg(changeProfileImgReqDto, principalUser));
     }
 
 }

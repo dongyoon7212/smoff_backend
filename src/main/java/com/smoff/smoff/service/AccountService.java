@@ -2,6 +2,7 @@ package com.smoff.smoff.service;
 
 import com.smoff.smoff.dto.ApiRespDto;
 import com.smoff.smoff.dto.account.ChangePasswordReqDto;
+import com.smoff.smoff.dto.account.ChangeProfileImgReqDto;
 import com.smoff.smoff.dto.account.ChangeUsernameReqDto;
 import com.smoff.smoff.entity.User;
 import com.smoff.smoff.repository.UserRepository;
@@ -72,5 +73,25 @@ public class AccountService {
         }
 
         return new ApiRespDto<>("success", "사용자 이름이 변경되었습니다.", null);
+    }
+
+    public ApiRespDto<?> changeProfileImg(ChangeProfileImgReqDto changeProfileImgReqDto, PrincipalUser principalUser) {
+        if (!Objects.equals(changeProfileImgReqDto.getUserId(), principalUser.getUserId())) {
+            return new ApiRespDto<>("failed", "잘못된 요청입니다.", null);
+        }
+
+        Optional<User> userIdOptionalUser = userRepository.getUserByUserId(changeProfileImgReqDto.getUserId());
+
+        if (userIdOptionalUser.isEmpty()) {
+            return new ApiRespDto<>("failed", "회원 정보가 존재하지 않습니다.", null);
+        }
+
+        int result = userRepository.changeProfileImg(changeProfileImgReqDto.toEntity());
+
+        if (result != 1) {
+            return new ApiRespDto<>("failed", "문제가 발생했습니다 다시 시도해주세요.", null);
+        }
+
+        return new ApiRespDto<>("success", "프로필 이미지가 변경되었습니다.", null);
     }
 }

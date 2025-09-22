@@ -48,4 +48,8 @@ public class UserRepository {
     public int changeUsername(User user) {
         return userMapper.changeUsername(user);
     }
+
+    public int changeProfileImg(User user) {
+        return userMapper.changeProfileImg(user);
+    }
 }
