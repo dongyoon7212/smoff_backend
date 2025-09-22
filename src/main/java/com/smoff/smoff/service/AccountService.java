@@ -39,7 +39,7 @@ public class AccountService {
             return new ApiRespDto<>("failed", "아이디 또는 비밀번호가 일치하지 않습니다.", null);
         }
 
-        int result = userRepository.changePassword(changePasswordReqDto.toEntity());
+        int result = userRepository.changePassword(changePasswordReqDto.toEntity(bCryptPasswordEncoder));
 
         if (result != 1) {
             return new ApiRespDto<>("failed", "문제가 발생했습니다 다시 시도해주세요.", null);

@@ -3,6 +3,7 @@ package com.smoff.smoff.dto.account;
 import com.smoff.smoff.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Data
 @AllArgsConstructor
@@ -11,10 +12,10 @@ public class ChangePasswordReqDto {
     private String oldPassword;
     private String newPassword;
 
-    public User toEntity() {
+    public User toEntity(BCryptPasswordEncoder bCryptPasswordEncoder) {
         return User.builder()
                 .userId(userId)
-                .password(newPassword)
+                .password(bCryptPasswordEncoder.encode(newPassword))
                 .build();
     }
 }
