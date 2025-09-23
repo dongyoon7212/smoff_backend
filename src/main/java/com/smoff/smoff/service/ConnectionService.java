@@ -40,6 +40,14 @@ public class ConnectionService {
             return new ApiRespDto<>("failed", "해당 서포터가 존재하지 않습니다.", null);
         }
 
+        if (!challengerIdOptionalUser.get().getRoleType().equals("CHALLENGER")) {
+            return new ApiRespDto<>("failed", "해당 회원은 챌린저가 아닙니다.", null);
+        }
+
+        if (!supporterIdOptionalUser.get().getRoleType().equals("SUPPORTER")) {
+            return new ApiRespDto<>("failed", "해당 회원은 서포터가 아닙니다.", null);
+        }
+
         Optional<Connection> optionalConnection = connectionRepository.getConnection(addConnectionReqDto.getChallengerId(), addConnectionReqDto.getSupporterId());
 
         if (optionalConnection.isPresent()) {
